@@ -213,3 +213,41 @@ git merge origin/master
 ## To pull (fetch + merge)
 git pull origin remoteBranch
 
+## to keep clone of a fork and fork in sync with original repo in github after original changes
+if you had forked a repo, lets say, ex4_JS_this_closures_let_arrowFunc, repo of ilker-kiris, then you can resync your local repo to original repo and then push that to your fork in github
++ login to github as you (in this example ilker-public2) and find the original github project (of ilker-kiris), in this example
+```
+"https://github.com/fdu-csci3444/ex4_JS_this_closures_let_arrowFunc.git"
+```
++ then fork it in github site by clicking "fork" button on top right corner
++ copy the git url of your fork, in this example 
+```
+"https://github.com/fdu-csci3444-public/ex4_JS_this_closures_let_arrowFunc.git"
+```
++ in gitbash cd to your project where you are going to clone your fork and then clone it 
+```
+cd /c/fdu/csci3444/projects
+git clone https://github.com/fdu-csci3444-public/ex4_JS_this_closures_let_arrowFunc.git
+```
++ see that above fork github repo shows up as "origin" in your remote repos
+```
+git remote -v
+```
++ after some time, let's say original github repo got changed, and you want to sync your local clone of your fork, and your fork in github.
++ 1st add the original github repo url as a remote to your local repo, for example calling it "upstream". Then you should see "upstream" as well as "origin" in your remote repo list
+```
+git remote add upstream https://github.com/fdu-csci3444/ex4_JS_this_closures_let_arrowFunc.git
+git remote -v
+```
++ 2nd fetch the original repo to your local repo;
+```
+git fetch upstream
+```
++ 3rd merge the above fetched repo to your local working view;
+```
+git merge upstream/master
+```
++ 4th push your local repo to your github fork repo
+```
+git push -u origin master
+```
